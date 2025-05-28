@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs') %>
+<div class="container">
+    <h2><%- title %></h2>
+    <table class="table table-hover table-striped">
+        <thead>
+            <% users.forEach(function(user){ %>
+                <tr>
+                    <td><a href="users/view/<%= user.id %>"><%= user.first_name %></a></td>
+                    <td><%= user.last_name %></td>
+                    <td><%= user.email %></td>
+                </tr>
+            <% }); %>
+        </thead>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
+<script src="/hydra/main.js"></script>
+<script src="/hydra/wall.js"></script>
+<%- include('../partials/footer.ejs') %>

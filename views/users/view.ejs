@@ -1,0 +1,23 @@
+<%- include('../partials/header.ejs') %>
+<div>
+  <div class="card-body" style="position: relative">
+    <h4 class="card-title"><%- user.first_name + " " + user.last_name %></h4>
+    <p class="card-text"><b>Email: </b><%- user.email %></p>
+    <%
+        if(user.id % 2 == 0) {
+        %>
+            <div style="position:absolute;right: 10px;top: 10px;"><img src="https://randomuser.me/api/portraits/lego/<%= user.id %>.jpg" width="100vw"></div>
+        <%} else {%>
+            <div style="position:absolute;right: 10px;top: 10px;"><img src="https://randomuser.me/api/portraits/lego/<%= user.id %>.jpg" width="100vw"></div>
+    <%}%>
+    <p class="card-text w-75">
+        <p><b>Bio:</b> <%= user.bio_data.bio %></p>
+        <p><b>Phone:</b> <%= user.bio_data.phone %></p>
+        <p><b>Address:</b> <%= user.bio_data.address %></p>
+    <a href="/users" class="card-link">Back</a>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
+<script src="/hydra/main.js"></script>
+<script src="/hydra/mahalia.js"></script>
+<%- include('../partials/footer.ejs') %>
