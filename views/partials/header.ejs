@@ -1,35 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%=title%></title>
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="/public/images/favicons/apple-touch-icon.png"
+      href="/images/favicons/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="/public/images/favicons/favicon-32x32.png"
+      href="/images/favicons/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="/public/images/favicons/favicon-16x16.png"
+      href="/images/favicons/favicon-16x16.png"
     />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/spacelab/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="/css/hydra.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/main.css"
+    />
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="#">My Website</a>
+        <a class="navbar-brand" href="/"><strong>Myra's EJS Site</strong></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -43,15 +52,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
+            <% navLinks.forEach(function(link) { %>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= link.url %>"><%= link.name %></a>
+              </li>
+            <% }) %>
           </ul>
         </div>
       </div>
     </nav>
   </body>
 </html>
+<main class="container mt-4 content-on-top">
+  <div id="body-container">
+    <main class="container mt-4">

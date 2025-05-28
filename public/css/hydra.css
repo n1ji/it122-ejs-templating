@@ -1,0 +1,14 @@
+#hydra-bg-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none; /* allows clicks to pass through */
+}
+.content-on-top {
+    position: relative;
+    z-index: 1;
+    color: white;
+    text-shadow: 0 0 10px #000;
+}

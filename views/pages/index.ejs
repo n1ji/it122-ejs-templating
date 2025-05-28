@@ -1,10 +1,35 @@
 <%- include('../partials/header.ejs') %>
-<main class="container mt-4">
-    <h2><%=title%></h2>
-    <p>Clever content goes here</p>
-    <p>Clever content goes here</p>
-    <p>Clever content goes here</p>
-    <p>Clever content goes here</p>
-    <p>Clever content goes here</p>
-</main>
+<div class="row align-items-center">
+    <div class="col-md-8">
+        <h2><%= title %></h2>
+        <p>
+        Welcome to Myra's creative coding space! Here you'll find a blend of
+        programming, audio experiments, and digital art. This site is built with
+        Node.js, Express, EJS templating, and features visuals
+        powered by Hydra-synth.
+        </p>
+        <p>
+        Explore the About page to learn more about me, or
+        check out the Headphones page for my thoughts
+        on high-end audio gear. Each page features unique visuals and
+        content—feel free to look around and get inspired!
+        </p>
+        <p>
+        If you're interested in creative coding, game development, or just want
+        to see how code and art can mix, you're in the right place. Enjoy your
+        stay!
+        </p>
+    </div>
+    <div class="col-md-4 text-center">
+        <img
+        src="/images/portrait.png"
+        alt="Portrait"
+        class="img-fluid rounded-circle"
+        style="width: 250px; height: 250px; object-fit: cover"
+        />
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/hydra-synth/dist/hydra-synth.js"></script>
+<script src="/hydra/main.js"></script>
+<script src="/hydra/sumet.js"></script>
 <%- include('../partials/footer.ejs') %>
