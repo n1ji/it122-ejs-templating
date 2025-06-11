@@ -1,16 +1,22 @@
-//include Express
+// Include Express
 const express = require("express");
-//server will listen on this port
 const port = 3000;
 
-//create instance of Express app
+// Create instance of Express app
 const app = express();
 
-var data = require("./test.json");
+// Load data
+const data = require("./test.json");
 
+// Load environment variables and database
+require('dotenv').config();
+require('./models/mongoose');
+
+// Set view engine and static folder
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+// Set navigation links for all pages
 app.use((req, res, next) => {
   res.locals.navLinks = [
     { name: "Home", url: "/" },
@@ -18,63 +24,54 @@ app.use((req, res, next) => {
     { name: "Headphones", url: "/headphones" },
     { name: "Other Sites", url: "/sites" },
     { name: "Users", url: "/users" },
+    { name: "Recipes", url: "/recipes"}
   ];
   next();
 });
 
-//index/home URL
+// Recipe routes
+const recipeRoutes = require('./routes/recipes');
+app.use('/recipes', recipeRoutes);
+
+// Home page
 app.get("/", (req, res) => {
-  let title = "Home";
-  res.render("pages/index", { title });
+  res.render("pages/index", { title: "Home" });
 });
 
-//about page/url
+// About page
 app.get("/about", (req, res) => {
-  let about = {
-    title: "About",
-  };
-  res.render("pages/about", { title: about.title });
+  res.render("pages/about", { title: "About" });
 });
 
-//headphones page/url
+// Headphones page
 app.get("/headphones", (req, res) => {
-  let about = {
-    title: "Headphones",
-  };
-  res.render("pages/headphones", { title: about.title });
+  res.render("pages/headphones", { title: "Headphones" });
 });
 
-//sites page/url
+// Other Sites page
 app.get("/sites", (req, res) => {
-  let about = {
-    title: "Other Sites",
-  };
-  res.render("pages/sites", { title: about.title });
+  res.render("pages/sites", { title: "Other Sites" });
 });
 
-//users page/url
+// Users list page
 app.get("/users", (req, res) => {
-  let about = {
-    title: "Users",
-  };
   res.render("users/index", {
-    title: about.title,
+    title: "Users",
     users: data,
   });
 });
 
-//add user/view route - we are cheating by using the array index - 1
-app.get("/users/view/:id", function (req, res) {
-  var title = "User Page";
+// User view page
+app.get("/users/view/:id", (req, res) => {
   const user = data.find(u => u.id == req.params.id);
-  res.render('users/view', {
-    title,
+  res.render("users/view", {
+    title: "User Page",
     user,
-    bio_data: user.bio_data 
+    bio_data: user.bio_data,
   });
 });
 
-//Set server to listen for requests
+// Start server
 app.listen(port, () => {
   console.log(`Server running at port: ${port}`);
 });
