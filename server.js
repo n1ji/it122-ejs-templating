@@ -16,6 +16,10 @@ require('./models/mongoose');
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
+//allows us to delete records
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 // Set navigation links for all pages
 app.use((req, res, next) => {
   res.locals.navLinks = [
@@ -26,6 +30,17 @@ app.use((req, res, next) => {
     { name: "Users", url: "/users" },
     { name: "Recipes", url: "/recipes"}
   ];
+  next();
+});
+
+const session = require('express-session');
+app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
+app.use(express.urlencoded({ extended: true }));
+
+//pass session data to routes
+app.use((req, res, next) => {
+  res.locals.message = req.session.message;
+  delete req.session.message;
   next();
 });
 

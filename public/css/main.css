@@ -57,3 +57,23 @@ a.sites {
     color: darkred;
     font-weight: bold;
 }
+
+.plain-link-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+.plain-link-btn:hover, .plain-link-btn:focus {
+  color: #ffd700;
+  outline: none;
+}
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.5em;
+  margin-top: 1.5em;
+}
